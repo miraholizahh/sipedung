@@ -14,11 +14,29 @@
         </div>
         <div id="navbar-with-collapse" class="hidden transition-all duration-[0.1ms] overflow-hidden basis-full grow sm:block">
             <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="homenav">Dashboard</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="profilenav">Profile</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Contact</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="{{ route('login') }}">Login</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="{{ route('register') }}">Register</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="homenav">Beranda</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="profilenav">Profil</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Kontak</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="buildingnav">Daftar Gedung</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Peminjaman</a>
+                @if(Route::has('login'))
+                @auth
+                <div class="font-semibold text-lg text-gray-600 hover:text-gray-400">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+    
+                        <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+                </div>
+                @else
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="{{ route('login') }}">Masuk</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="{{ route('register') }}">Registrasi</a>
+            @endauth
+                @endif
             </div>
         </div>        
     </nav>

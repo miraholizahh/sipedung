@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -9,8 +10,9 @@ class PemohonController extends Controller
 {
     public function index()
     {
-        $pemohon = User::all();
-        return view('pemohon.index', ['pemohons' => $pemohon]);
+        $pemohons = User::all();
+        // $role = $pemohon->idRole;
+        return view('pemohon.index', compact('pemohons'));
     }
 
     public function create()
@@ -64,7 +66,7 @@ class PemohonController extends Controller
         return redirect()->route('pemohon.index')->with('success', 'Data User berhasil diperbarui');
     }
 
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $pemohon = User::findOrFail($id);
         $pemohon->delete();

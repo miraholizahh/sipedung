@@ -8,9 +8,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-custom-color overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white text-white">
-                    <div style="text-align: right;">
+                    {{-- <div style="text-align: right;">
                         <x-primary-button tag="a" href="{{ route('pemohon.create') }}">Add Data</x-primary-button>
-                    </div>
+                    </div> --}}
                     <x-table>
                         <x-slot name="header">
                             <tr>
@@ -23,8 +23,10 @@
                                 <th>Status</th>
                             </tr>
                         </x-slot>
+                        
                         @php $num=1; @endphp
                         @foreach($pemohons as $pemohon)
+                        @if($pemohon->idRole===2)
                         <tr>
                             <td>{{ $num++ }}</td>
                             <td>{{ $pemohon->name }}</td>
@@ -33,27 +35,28 @@
                             <td>{{ $pemohon->telepon }}</td>
                             <td>Tersembunyi</td>
                             <td>
-                                @if($pemohon->status == 0)
-                                    <p>Tidak Aktif</p>
-                                @else
+                                @if($pemohon->status == 1)
                                     <p>Aktif</p>
+                                @else
+                                    <p>Tidak Aktif</p>
                                 @endif
                             </td>
                             <td>
                                 <x-primary-button tag="a" href="{{ route('pemohon.edit', $pemohon->id) }}"> Edit </x-primary-button>
-                                <x-danger-button
+                                {{-- <x-danger-button
                                 x-data=""
                                 x-on:click.prevent="
-                                    $dispatch('open-modal', 'confirm-book-deletion');
+                                    $dispatch('open-modal', 'confirm-pemohon-deletion');
                                     $dispatch('set-action', '{{ route('pemohon.destroy', $pemohon->id) }}');">
                                 {{ __('Delete') }}
-                                </x-danger-button>
+                                </x-danger-button> --}}
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </x-table>
 
-                    <x-modal name="confirm-book-deletion" focusable maxWidth="xl">
+                    {{-- <x-modal name="confirm-pemohon-deletion" focusable maxWidth="xl">
                         <form method="post" x-bind:action="action" class="p-6">
                             @csrf
                             @method('delete')
@@ -72,7 +75,7 @@
                                 </x-danger-button>
                             </div>
                         </form>
-                    </x-modal>
+                    </x-modal> --}}
 
                 </div>
             </div>
