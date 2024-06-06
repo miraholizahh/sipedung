@@ -18,13 +18,12 @@
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="profilenav">Profil</a>
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Kontak</a>
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="buildingnav">Daftar Gedung</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Peminjaman</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="{{ route('peminjam.create') }}">Peminjaman</a>
                 @if(Route::has('login'))
                 @auth
                 <div class="font-semibold text-lg text-gray-600 hover:text-gray-400">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-    
                         <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                             this.closest('form').submit();">

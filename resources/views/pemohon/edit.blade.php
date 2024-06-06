@@ -39,7 +39,10 @@
                         </div> --}}
                         <div class="max-w-xl text-white">
                             <x-input-label for="status" value="Status" />
-                            <x-text-input id="status" type="text" name="status" class="mt-1 block w-full" value="{{ old('status') }}" required />
+                            <select id="status" name="status" class="mt-1 block w-full text-black">
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
                             <x-input-error class="mt-2" :messages="$errors->get('status')" />
                         </div>
                         <div class="flex items-center gap-4">

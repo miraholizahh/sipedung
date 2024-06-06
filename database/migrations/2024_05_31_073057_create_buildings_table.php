@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_gedung');
+            $table->date('tanggal_peminjaman')->nullable();
+            $table->integer('kapasitas');
+            $table->string('fasilitas');
+            $table->boolean('status')->default(true);
+            $table->string('foto', 255)->nullable();
             $table->timestamps();
         });
     }

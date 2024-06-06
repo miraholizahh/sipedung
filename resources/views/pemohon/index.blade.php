@@ -21,6 +21,7 @@
                                 <th>Telepon</th>
                                 <th>Password</th>
                                 <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </x-slot>
                         
