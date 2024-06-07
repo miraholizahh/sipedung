@@ -82,5 +82,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/buildingnav', [DaftarGedungController::class, 'buildingnav'])->name('buildingnav');
- 
+// Route::get('/gedung/{id}', [GedungController::class, 'show'])->name('gedung.show');
+Route::get('/get-building-details/{id}', [GedungController::class, 'getBuildingDetails']);
+
 require __DIR__.'/auth.php';

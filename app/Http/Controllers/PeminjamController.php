@@ -10,7 +10,7 @@ class PeminjamController extends Controller
 {
     public function index()
     {
-        $borrows = Borrow::all();
+        $borrows = Borrow::all();                                                                                                                           
         return view('peminjam.index', compact('borrows'));
     }
     

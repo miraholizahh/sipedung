@@ -85,4 +85,17 @@ class GedungController extends Controller
 
         return redirect()->route('gedung.index')->with('success', 'Data Gedung berhasil dihapus');
     }
+
+    // public function show($id)
+    // {
+    //     $gedung = Building::findOrFail($id);
+    //     return view('gedung.show', compact('gedung'));
+    // }
+
+    public function getBuildingDetails($id)
+    {
+        $gedung = Building::findOrFail($id);
+        return response()->json($gedung);
+    }
+
 }
