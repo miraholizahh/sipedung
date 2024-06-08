@@ -11,7 +11,6 @@ class Borrow extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'instansi',
         'nama_gedung',
         'agenda',
@@ -22,18 +21,13 @@ class Borrow extends Model
         'file_path', // Memperbaiki penulisan kolom
     ];
 
-    public function user()
+    public function roles()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function roles(){
         return $this->belongsTo(Roles::class, 'idRole');
     }
-    
+
     public function hasRole($role)
     {
-        return $this->roles->name === $role;
+        return $this->roles && $this->roles->name === $role;
     }
 }
-

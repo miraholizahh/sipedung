@@ -8,9 +8,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-custom-color overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white text-white">
-                    {{-- <div style="text-align: right;">
+                    <div style="text-align: right;">
                         <x-primary-button tag="a" href="{{ route('pemohon.create') }}">Add Data</x-primary-button>
-                    </div> --}}
+                    </div>
                     <x-table>
                         <x-slot name="header">
                             <tr>

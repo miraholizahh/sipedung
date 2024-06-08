@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->string('instansi');
-            $table->string('agenda');
+            $table->string('instansi', 255);
+            $table->string('nama_gedung', 255);
+            $table->string('agenda', 255);
             $table->date('tanggal_peminjaman');
             $table->time('waktu_peminjaman');
             $table->integer('jumlah_peserta');
             $table->boolean('status')->default(false);
             $table->string('file_path')->nullable();
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
-        });
+        });        
     }
 
     /**

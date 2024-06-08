@@ -5,6 +5,8 @@ use App\Http\Controllers\PemohonController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\User\DaftarGedungController;
+use App\Http\Controllers\LaporanGedungController;
+use App\Http\Controllers\User\Controller;
 use Illuminate\Support\Facades\Route;
 
 
@@ -61,6 +63,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/peminjam/{id}/edit', [PeminjamController::class, 'edit'])->name('peminjam.edit');
     Route::put('/peminjam/{id}', [PeminjamController::class, 'update'])->name('peminjam.update');
     Route::delete('/peminjam/{id}', [PeminjamController::class, 'destroy'])->name('peminjam.destroy');
+    Route::resource('peminjam', PeminjamController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -77,12 +80,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/gedung/{id}', [GedungController::class, 'destroy'])->name('gedung.destroy');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::resource('peminjam', PeminjamController::class);
-});
-
 Route::get('/buildingnav', [DaftarGedungController::class, 'buildingnav'])->name('buildingnav');
 // Route::get('/gedung/{id}', [GedungController::class, 'show'])->name('gedung.show');
 Route::get('/get-building-details/{id}', [GedungController::class, 'getBuildingDetails']);
+
+Route::get('/laporan', [LaporanContoller::class, 'laporan'])->name('laporan');
+
 
 require __DIR__.'/auth.php';

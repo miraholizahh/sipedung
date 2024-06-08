@@ -53,14 +53,6 @@
                             <input id="file" type="file" name="file" class="mt-1 block w-full" accept=".jpg, .jpeg, .png, .pdf" />
                             <x-input-error class="mt-2" :messages="$errors->get('file')" />
                         </div>   
-                        <div>
-                            <x-input-label for="users_id" value="Peminjam" />
-                            <select name="user_id" id="users_id" class="mt-1 block w-full rounded-lg border-gray-300">
-                                @foreach($users as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
-                            </select>                            
-                        </div>
                         <x-secondary-button tag="a" href="{{ route('peminjam.index') }}">Cancel</x-secondary-button>
                         <x-primary-button name="save" value="true">Save</x-primary-button>
                     </form>

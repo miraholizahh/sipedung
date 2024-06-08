@@ -1,3 +1,4 @@
+<!-- resources/views/peminjam/index.blade.php -->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
@@ -12,12 +13,11 @@
                     <div style="text-align: right;">
                         <x-primary-button tag="a" href="{{ route('peminjam.create') }}">Add Data</x-primary-button>
                     </div>
-    
+
                     <x-table>
-                        <x-slot name="header">
+                        <x-slot name="header">  
                             <tr>
                                 <th>No</th>
-                                <th>Peminjam</th>
                                 <th>Instansi</th>
                                 <th>Agenda</th>
                                 <th>Tanggal Peminjaman</th>
@@ -28,13 +28,12 @@
                                 <th>Aksi</th>
                             </tr>
                         </x-slot>
-    
+
                         @php $num = 1; @endphp
                         @foreach($borrows as $borrow)
-                            @if(!$borrow->user->hasRole('admin')) <!-- Mengabaikan pengguna dengan peran admin -->
+                            {{-- @if($borrow->user && !$borrow->user->hasRole('admin'))  --}}
                                 <tr>
                                     <td>{{ $num++ }}</td>
-                                    <td>{{ $borrow->user->name }}</td>
                                     <td>{{ $borrow->instansi }}</td>
                                     <td>{{ $borrow->agenda }}</td>
                                     <td>{{ $borrow->tanggal_peminjaman }}</td>
@@ -67,10 +66,10 @@
                                         </x-danger-button>
                                     </td>
                                 </tr>
-                            @endif
+                            {{-- @endif --}}
                         @endforeach
                     </x-table>
-    
+
                     <x-modal name="confirm-peminjam-deletion" focusable maxWidth="xl">
                         <form method="post" x-bind:action="action" class="p-6">
                             @csrf

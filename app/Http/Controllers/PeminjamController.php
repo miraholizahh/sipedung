@@ -3,29 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrow;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PeminjamController extends Controller
 {
     public function index()
     {
-        $borrows = Borrow::all();                                                                                                                           
-        return view('peminjam.index', compact('borrows'));
+        $data['borrows'] = Borrow::all();
+        return view('peminjam.index', $data);
     }
-    
 
     public function create()
     {
-        $users = User::pluck('name', 'id');
-        return view('peminjam.create', compact('users'));
+        return view('peminjam.create');
     }
-    
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'instansi' => 'required|string|max:255',
             'nama_gedung' => 'required|string|max:255',
             'agenda' => 'required|string|max:255',
@@ -40,7 +36,6 @@ class PeminjamController extends Controller
 
         if ($request->hasFile('file')) {
             $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
-
             $request->file('file')->storeAs('uploads', $fileName); // Simpan file di folder storage/uploads
         }
 
@@ -51,8 +46,8 @@ class PeminjamController extends Controller
 
     public function edit($id)
     {
-        $borrow = Borrow::findOrFail($id);
-        return view('peminjam.edit', compact('borrow'));
+        $peminjam = Borrow::findOrFail($id);
+        return view('peminjam.edit', compact('peminjam'));
     }
 
     public function update(Request $request, $id)
@@ -60,7 +55,6 @@ class PeminjamController extends Controller
         $borrow = Borrow::findOrFail($id);
 
         $validatedData = $request->validate([
-            'user_id' => 'required|exists:users,id',
             'instansi' => 'required|string|max:255',
             'nama_gedung' => 'required|string|max:255',
             'agenda' => 'required|string|max:255',
@@ -73,7 +67,6 @@ class PeminjamController extends Controller
 
         if ($request->hasFile('file')) {
             $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
-
             $request->file('file')->storeAs('uploads', $fileName); // Simpan file di folder storage/uploads
 
             // Hapus file lama jika ada
