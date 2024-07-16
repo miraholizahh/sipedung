@@ -1,4 +1,4 @@
-<header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-broken-white text-sm py-4">
+<header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-broken-white text-sm py-4 text-white">
     <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
         <div class="flex items-center justify-between">
             <a class="flex-none" href="#">
@@ -18,7 +18,7 @@
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="profilenav">Profil</a>
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Kontak</a>
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="buildingnav">Daftar Gedung</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="{{ route('peminjam.create') }}">Peminjaman</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="form">Peminjaman</a>
                 @if(Route::has('login'))
                 @auth
                 <div class="font-semibold text-lg text-gray-600 hover:text-gray-400">

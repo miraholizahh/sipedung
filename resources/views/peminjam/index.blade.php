@@ -11,9 +11,24 @@
             <div class="bg-custom-color overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-white">
                     <div style="text-align: right;">
+                        <form action="{{ route('peminjam.search') }}" method="POST">
+                            @csrf
                         <x-primary-button tag="a" href="{{ route('peminjam.create') }}">Add Data</x-primary-button>
+                        <input type="text" id="searchInput" placeholder="Search..." class="ml-3 px-3 py-1 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                        <button type="submit" class="ml-3 px-3 py-1 rounded-md bg-blue-500 text-white focus:outline-none focus:ring focus:border-blue-300">Search</button>
+                    </form>
                     </div>
-
+                    <div class="mt-4">
+                        @if ($borrows->isNotEmpty())
+                            @foreach ($borrows as $borrow)
+                                <!-- Tampilkan hasil pencarian di sini -->
+                                {{-- <p>{{ $borrow->instansi }}</p> --}}
+                            @endforeach
+                        @else
+                            <p>Instansi Tidak Ada</p>
+                        @endif
+                    </div>
+                    
                     <x-table>
                         <x-slot name="header">  
                             <tr>

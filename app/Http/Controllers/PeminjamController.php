@@ -17,6 +17,7 @@ class PeminjamController extends Controller
     public function create()
     {
         return view('peminjam.create');
+        
     }
 
     public function store(Request $request)
@@ -94,5 +95,31 @@ class PeminjamController extends Controller
         $borrow->delete();
 
         return redirect()->route('peminjam.index')->with('success', 'Data Peminjam berhasil dihapus');
+    }
+
+    // public function search(Request $request)
+    // {
+    //     // Mendapatkan kata kunci pencarian dari permintaan
+    //     $keyword = $request->input('keyword');
+
+    //     // Melakukan pencarian peminjam berdasarkan kata kunci
+    //     $borrows = Borrow::where('instansi', 'LIKE', "%$keyword%")
+    //                         ->orWhere('agenda', 'LIKE', "%$keyword%")
+    //                         ->orWhere('tanggal_peminjaman', 'LIKE', "%$keyword%")
+    //                         ->orWhere('waktu_peminjaman', 'LIKE', "%$keyword%")
+    //                         ->orWhere('jumlah_peserta', 'LIKE', "%$keyword%")
+    //                         ->orWhere('status', 'LIKE', "%$keyword%")
+    //                         ->get();
+
+    //     // Mengembalikan tampilan dengan hasil pencarian
+    //     return view('peminjam.index', compact('borrows'));
+    // }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $borrows = Borrow::where('instansi', 'like', "%{$query}%")->get();
+        
+        return view('peminjam.index', compact('borrows'));
     }
 }

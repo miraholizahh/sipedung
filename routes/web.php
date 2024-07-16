@@ -6,6 +6,8 @@ use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\User\DaftarGedungController;
 use App\Http\Controllers\LaporanGedungController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormPeminjamanController;
 use App\Http\Controllers\User\Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -39,9 +41,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
     Route::get('/pemohon', [PemohonController::class, 'index'])->name('pemohon.index');
@@ -53,10 +53,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/peminjam', [PeminjamController::class, 'index'])->name('peminjam.index');
     Route::get('/peminjam/create', [PeminjamController::class, 'create'])->name('peminjam.create');
     Route::post('/peminjam', [PeminjamController::class, 'store'])->name('peminjam.store');
@@ -64,12 +62,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/peminjam/{id}', [PeminjamController::class, 'update'])->name('peminjam.update');
     Route::delete('/peminjam/{id}', [PeminjamController::class, 'destroy'])->name('peminjam.destroy');
     Route::resource('peminjam', PeminjamController::class);
+    Route::post('/peminjam/search', [PeminjamController::class, 'search'])->name('peminjam.search');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
     Route::get('/gedung', [GedungController::class, 'index'])->name('gedung.index');
@@ -86,5 +83,9 @@ Route::get('/get-building-details/{id}', [GedungController::class, 'getBuildingD
 
 Route::get('/laporan', [LaporanContoller::class, 'laporan'])->name('laporan');
 
+
+
+Route::get('/form', [FormPeminjamanController::class, 'formpeminjaman'])->name('formpeminjaman.form');
+Route::post('/form', [FormPeminjamanController::class, 'store'])->name('formpeminjaman.form.store');
 
 require __DIR__.'/auth.php';
