@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('borrows', function (Blueprint $table) {
+        Schema::create('form_peminjaman', function (Blueprint $table) {
             $table->id();
             $table->string('instansi', 255);
             $table->string('nama_gedung', 255);
@@ -21,10 +21,9 @@ return new class extends Migration
             $table->integer('jumlah_peserta');
             $table->boolean('status')->default(false);
             $table->string('file_path')->nullable();
-            // $table->bigInteger('user_id');
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
-        });        
+
+        });
     }
 
     /**
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('borrows');
+        Schema::dropIfExists('form_peminjaman');
     }
 };

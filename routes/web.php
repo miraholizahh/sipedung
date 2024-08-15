@@ -87,5 +87,6 @@ Route::get('/laporan', [LaporanContoller::class, 'laporan'])->name('laporan');
 
 Route::get('/form', [FormPeminjamanController::class, 'formpeminjaman'])->name('formpeminjaman.form');
 Route::post('/form', [FormPeminjamanController::class, 'store'])->name('formpeminjaman.form.store');
+Route::get('/status', [FormPeminjamanController::class, 'status'])->name('formpeminjaman.status');
 
 require __DIR__.'/auth.php';

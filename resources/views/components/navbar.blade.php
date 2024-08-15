@@ -17,10 +17,10 @@
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="homenav">Beranda</a>
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="profilenav">Profil</a>
                 <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="contactnav">Kontak</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="buildingnav">Daftar Gedung</a>
-                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="form">Peminjaman</a>
                 @if(Route::has('login'))
                 @auth
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="buildingnav">Daftar Gedung</a>
+                <a class="font-semibold text-lg text-gray-600 hover:text-gray-400" href="form">Peminjaman</a>
                 <div class="font-semibold text-lg text-gray-600 hover:text-gray-400">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

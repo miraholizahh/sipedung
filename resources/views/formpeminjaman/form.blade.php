@@ -46,14 +46,6 @@
                             <x-input-error class="mt-2" :messages="$errors->get('jumlah_peserta')" />
                         </div>                      
                         <div class="max-w-xl text-white">
-                            <x-input-label for="status" value="Status" />
-                            <select id="status" name="status" class="mt-1 block w-full text-black">
-                                <option value="1">Approved</option>
-                                <option value="0">Pending</option>
-                            </select>
-                            <x-input-error class="mt-2" :messages="$errors->get('status')" />
-                        </div>
-                        <div class="max-w-xl text-white">
                             <x-input-label for="file" value="Unggah File" />
                             <input id="file" type="file" name="file" class="mt-1 block w-full" accept=".jpg, .jpeg, .png, .pdf" />
                             <x-input-error class="mt-2" :messages="$errors->get('file')" />

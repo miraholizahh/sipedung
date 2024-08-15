@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\FormPeminjaman;
 
 class FormPeminjamanController extends Controller
 {
@@ -24,6 +26,8 @@ class FormPeminjamanController extends Controller
         'file' => 'nullable|file|mimes:jpeg,png,pdf|max:2048',
     ]);
 
+    var_dump(Auth::user()->id);
+
     $formpeminjaman = new FormPeminjaman();
     $formpeminjaman->instansi = $validated['instansi'];
     $formpeminjaman->nama_gedung = $validated['nama_gedung'];
@@ -31,11 +35,20 @@ class FormPeminjamanController extends Controller
     $formpeminjaman->tanggal_peminjaman = $validated['tanggal_peminjaman'];
     $formpeminjaman->waktu_peminjaman = $validated['waktu_peminjaman'];
     $formpeminjaman->jumlah_peserta = $validated['jumlah_peserta'];
-    $formpeminjaman->status = 'Menunggu';
-    $formpeminjaman->file = $validated['file'];
+    $formpeminjaman->status = false;
+    $formpeminjaman->file_path = $validated['file'];
+    $formpeminjaman->user_id = Auth::user()->id;
     $formpeminjaman->save();
 
-    return redirect()->route('formpeminjaman.form')->with('success', 'Peminjaman berhasil dilakukan');
+    return redirect()->route('formpeminjaman.status')->with('success', 'Peminjaman berhasil dilakukan');
+   }
+
+   public function status()
+   {
+    $user = Auth::user();
+    $data['peminjaman']=FormPeminjaman::where('user_id', $user->id)->get();
+    
+    return view('formpeminjaman.status',$data) ;
    }
 }
 
